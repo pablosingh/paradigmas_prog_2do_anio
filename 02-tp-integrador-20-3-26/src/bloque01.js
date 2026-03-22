@@ -1,0 +1,25 @@
+const numeroAleatorio = () => {
+  const numero = Math.floor(Math.random() * 101);
+  console.log('Numero Aleatorio : ' + numero);
+  return numero;
+};
+
+const sumarDos = (numero) => numero + 2;
+const triplicar = (numero) => numero * 3;
+const esPar = (numero) => numero % 2 === 0;
+
+export const bloque01 = () => {
+  console.log('============================================');
+  console.log('Suma Dos : ' + sumarDos(numeroAleatorio()));
+  console.log('Suma Dos : ' + sumarDos(numeroAleatorio()));
+  console.log('Suma Dos : ' + sumarDos(numeroAleatorio()));
+  console.log('============================================');
+  console.log('Triplica : ' + triplicar(numeroAleatorio()));
+  console.log('Triplica : ' + triplicar(numeroAleatorio()));
+  console.log('Triplica : ' + triplicar(numeroAleatorio()));
+  console.log('============================================');
+  console.log('Es Par ? : ' + esPar(numeroAleatorio()));
+  console.log('Es Par ? : ' + esPar(numeroAleatorio()));
+  console.log('Es Par ? : ' + esPar(numeroAleatorio()));
+  console.log('============================================');
+};
