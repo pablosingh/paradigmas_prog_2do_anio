@@ -8,7 +8,7 @@ const sumarDos = (numero) => numero + 2;
 const triplicar = (numero) => numero * 3;
 const esPar = (numero) => numero % 2 === 0;
 
-export const bloque01 = () => {
+export const ejercicio01 = () => {
   console.log('============================================');
   console.log('Suma Dos : ' + sumarDos(numeroAleatorio()));
   console.log('Suma Dos : ' + sumarDos(numeroAleatorio()));

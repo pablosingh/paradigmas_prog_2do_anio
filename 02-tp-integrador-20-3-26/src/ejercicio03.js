@@ -21,31 +21,45 @@ const miTrim = (texto) => {
   return paraRetorno;
 };
 
-const normalizarTexto = (texto) => {
-  let textoTrimeado = miTrim(texto);
-  textoTrimeado = textoTrimeado.toLowerCase();
-  let nuevoTexto = '';
-  let repetido = false;
-  for (let i = 0; i < textoTrimeado.length; i++) {
-    if (i == 0) {
-      nuevoTexto = nuevoTexto + textoTrimeado.charAt(0).toUpperCase();
-      continue;
-    }
-    if (textoTrimeado[i] != ' ') {
-      nuevoTexto = nuevoTexto + textoTrimeado[i];
-      repetido = false;
-    } else if (textoTrimeado[i] === ' ' && repetido == false) {
-      repetido = true;
-      nuevoTexto = nuevoTexto + textoTrimeado[i];
-    } else if (repetido == true) {
-      continue;
-    }
-  }
-  console.log('Caracteres : ' + nuevoTexto.length);
-  return nuevoTexto;
+export const ponerMayusculas = (texto) => {
+  if (typeof texto === 'string') return texto.charAt(0).toUpperCase() + texto.slice(1);
+  else return texto;
 };
 
-export const bloque03 = () => {
+export const quitarEspaciosInternos = (texto) => {
+  let nuevoTexto = '';
+  let repetido = false;
+  if (typeof texto === 'string') {
+    for (let i = 0; i < texto.length; i++) {
+      // if (i == 0) {
+      //   nuevoTexto = nuevoTexto + texto.charAt(0).toUpperCase();
+      //   continue;
+      // }
+      if (texto[i] != ' ') {
+        nuevoTexto = nuevoTexto + texto[i];
+        repetido = false;
+      } else if (texto[i] === ' ' && repetido == false) {
+        repetido = true;
+        nuevoTexto = nuevoTexto + texto[i];
+      } else if (repetido == true) {
+        continue;
+      }
+    }
+    return nuevoTexto;
+  } else return texto;
+};
+
+export const normalizarTexto = (texto) => {
+  let textoTrimeado = miTrim(texto);
+  textoTrimeado = textoTrimeado.toLowerCase();
+  textoTrimeado = ponerMayusculas(textoTrimeado);
+  textoTrimeado = quitarEspaciosInternos(textoTrimeado);
+
+  console.log('Caracteres : ' + textoTrimeado.length);
+  return textoTrimeado;
+};
+
+export const ejercicio03 = () => {
   console.log(normalizarTexto('    hola  sd   SDFSDE    a   1    '));
   console.log(normalizarTexto('    1 2 3 4    5 678   9    '));
   console.log(normalizarTexto('      a  '));
