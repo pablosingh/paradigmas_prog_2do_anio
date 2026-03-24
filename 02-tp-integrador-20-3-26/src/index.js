@@ -10,6 +10,9 @@ import { ejercicio09 } from './ejercicio09.js';
 import { ejercicio10 } from './ejercicio10.js';
 import { ejercicio11 } from './ejercicio11.js';
 import { ejercicio12 } from './ejercicio12.js';
+import { ejercicio13 } from './ejercicio13.js';
+import { ejercicio14 } from './ejercicio14.js';
+import { ejercicio15 } from './ejercicio15.js';
 
 console.log('TP INTEGRADOR ');
 
@@ -24,4 +27,7 @@ console.log('TP INTEGRADOR ');
 // ejercicio09();
 // ejercicio10();
 // ejercicio11();
-ejercicio12();
+// ejercicio12();
+// ejercicio13();
+// ejercicio14();
+ejercicio15();
