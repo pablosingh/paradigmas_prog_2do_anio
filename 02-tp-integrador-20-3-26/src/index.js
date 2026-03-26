@@ -15,9 +15,11 @@ import { ejercicio14 } from './ejercicio14.js';
 import { ejercicio15 } from './ejercicio15.js';
 import { ejercicio16 } from './ejercicio16.js';
 
+export const separador = (texto) => console.log(`================== Ejercicio ${texto} ==================`);
+
 console.log('TP INTEGRADOR ');
 
-// ejercicio01();
+ejercicio01();
 // ejercicio02();
 // ejercicio03();
 // ejercicio04();
@@ -32,4 +34,4 @@ console.log('TP INTEGRADOR ');
 // ejercicio13();
 // ejercicio14();
 // ejercicio15();
-ejercicio16();
+// ejercicio16();

@@ -1,6 +1,9 @@
+import { separador } from './index.js';
+
 const crearMultiplicador = (factor) => (x) => factor * x;
 
 export const ejercicio10 = () => {
+  separador('10');
   const por2 = crearMultiplicador(2);
   const por5 = crearMultiplicador(5);
 

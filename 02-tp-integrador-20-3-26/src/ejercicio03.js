@@ -1,3 +1,5 @@
+import { separador } from './index.js';
+
 const miTrim = (texto) => {
   let nuevoTexto = '';
   let paraRetorno = '';
@@ -60,6 +62,7 @@ export const normalizarTexto = (texto) => {
 };
 
 export const ejercicio03 = () => {
+  separador('03');
   console.log(normalizarTexto('    hola  sd   SDFSDE    a   1    '));
   console.log(normalizarTexto('    1 2 3 4    5 678   9    '));
   console.log(normalizarTexto('      a  '));
