@@ -13,7 +13,7 @@ const seleccionarElementos = (datos, criterio) => {
 const filtroPar = (n) => n % 2 === 0;
 const filtroPorLetraA = (letra) => letra.includes('a');
 
-export const ejercicio06 = () => {
+export const ej06 = () => {
   separador('06');
   const palabras = ['testing', 'backend', 'frontend', 'api'];
   const notas = [20, 31, 5, 55, 15, 99];
