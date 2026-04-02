@@ -16,8 +16,8 @@ const transformar = (arreglo, func) => {
   return nuevoArreglo;
 };
 
-export const ejercicioxx = () => {
-  separador('xx');
+export const ej03_bis = () => {
+  separador('03 - Bis ');
   const arreglo = ['Matematica', 'Algebra', 'Ingles', 'Paradigmas'];
   console.log(transformar(destacar(arreglo)));
   console.log(transformar(etiquetar(arreglo)));

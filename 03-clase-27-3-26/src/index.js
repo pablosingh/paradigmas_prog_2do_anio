@@ -1,3 +1,4 @@
+import { ej03_bis } from './ej.js';
 import { ej01 } from './ej01.js';
 import { ej02 } from './ej02.js';
 import { ej03 } from './ej03.js';
@@ -12,6 +13,7 @@ export const separador = (texto) => console.log(`================== Ejercicio ${
 ej01();
 ej02();
 ej03();
+ej03_bis();
 ej04();
 ej05();
 ej06();
