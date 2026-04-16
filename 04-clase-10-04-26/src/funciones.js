@@ -10,4 +10,7 @@ const contarSegun = (datos, criterio) => {
     return cantidad;
 }
 
-module.exports = { transformarNumeros, transformarCadenas, contarSegun };
+const suma = (a, b) => a+b;
+const multiplicacion = (a, b) => a*b;
+
+module.exports = { transformarNumeros, transformarCadenas, contarSegun, suma, multiplicacion };
