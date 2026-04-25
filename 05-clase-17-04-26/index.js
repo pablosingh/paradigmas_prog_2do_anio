@@ -37,7 +37,7 @@ const nums = [4, 1, 2, 4, 5 , 8, 7, 6, 9, 10];
  
 // Repaso con estructuras de datos Simples
 /* Se tiene como estructura de datos un array numerico */
-const nums = [4, 1, 2, 4, 5, 8, 7, 6, 9, 10];
+// const nums = [4, 1, 2, 4, 5, 8, 7, 6, 9, 10];
  
 /* 1)  Calcular la suma de los cuadrados de los números impares.
 2) Teniendo en cuenta la siguiente lista de frases, deberás encontrar la frase más larga.  
