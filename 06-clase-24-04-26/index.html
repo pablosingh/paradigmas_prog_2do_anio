@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokédex CRUD</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f3f4f6;
+      color:#1f2937;
+    }
+
+    .container{
+      display:flex;
+      min-height:100vh;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+      width:250px;
+      background:white;
+      border-right:1px solid #ddd;
+      padding:20px;
+    }
+
+    .logo{
+      background:#ef4444;
+      color:white;
+      padding:20px;
+      border-radius:20px;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+      margin-bottom:30px;
+    }
+
+    .menu{
+      list-style:none;
+    }
+
+    .menu li{
+      padding:15px;
+      margin-bottom:10px;
+      border-radius:12px;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .menu li:hover{
+      background:#f3f4f6;
+    }
+
+    /* MAIN */
+
+    .main{
+      flex:1;
+      padding:30px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:30px;
+    }
+
+    .search{
+      width:350px;
+      padding:14px;
+      border:none;
+      border-radius:15px;
+      background:white;
+      box-shadow:0 2px 10px rgba(0,0,0,.05);
+      font-size:16px;
+    }
+
+    .btn-add{
+      background:#ef4444;
+      color:white;
+      border:none;
+      padding:14px 20px;
+      border-radius:15px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:.3s;
+    }
+
+    .btn-add:hover{
+      background:#dc2626;
+    }
+
+    /* CARDS */
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:white;
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 4px 15px rgba(0,0,0,.06);
+      transition:.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .pokemon-id{
+      font-size:14px;
+      color:#6b7280;
+    }
+
+    .pokemon-img{
+      width:120px;
+      height:120px;
+      object-fit:contain;
+      display:block;
+      margin:20px auto;
+    }
+
+    .pokemon-name{
+      text-align:center;
+      font-size:24px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+
+    .pokemon-type{
+      text-align:center;
+      margin-bottom:20px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:20px;
+      color:white;
+      font-size:14px;
+    }
+
+    .electric{
+      background:#facc15;
+      color:black;
+    }
+
+    .fire{
+      background:#f97316;
+    }
+
+    .water{
+      background:#38bdf8;
+    }
+
+    .grass{
+      background:#4ade80;
+      color:black;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+    }
+
+    .btn{
+      flex:1;
+      border:none;
+      padding:10px;
+      border-radius:12px;
+      cursor:pointer;
+      color:white;
+      font-weight:bold;
+    }
+
+    .edit{
+      background:#3b82f6;
+    }
+
+    .delete{
+      background:#ef4444;
+    }
+
+    /* MODAL */
+
+    .modal{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,.5);
+      display:none;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .modal-content{
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      width:400px;
+    }
+
+    .modal-content h2{
+      margin-bottom:20px;
+    }
+
+    .modal-content input,
+    .modal-content select{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ddd;
+      border-radius:10px;
+    }
+
+    .save-btn{
+      width:100%;
+      padding:14px;
+      background:#10b981;
+      border:none;
+      color:white;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+    <div class="logo">
+      Pokédex
+    </div>
+
+    <ul class="menu">
+      <li>🏠 Dashboard</li>
+      <li>⚡ Pokémon</li>
+      <li>➕ Crear Pokémon</li>
+      <li>📊 Estadísticas</li>
+      <li>⚙ Configuración</li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <div class="topbar">
+      <input 
+        type="text" 
+        class="search"
+        placeholder="Buscar Pokémon..."
+        id="searchInput"
+      >
+
+      <button class="btn-add" onclick="openModal()">
+        + Nuevo Pokémon
+      </button>
+    </div>
+
+    <div class="cards" id="pokemonContainer"></div>
+
+  </main>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-content">
+
+    <h2>Nuevo Pokémon</h2>
+
+    <input type="text" id="name" placeholder="Nombre">
+
+    <select id="type">
+      <option value="electric">Eléctrico</option>
+      <option value="fire">Fuego</option>
+      <option value="water">Agua</option>
+      <option value="grass">Planta</option>
+    </select>
+
+    <input type="text" id="image" placeholder="URL Imagen">
+
+    <button class="save-btn" onclick="addPokemon()">
+      Guardar
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+  let pokemons = [
+    {
+      id:25,
+      name:"Pikachu",
+      type:"electric",
+      image:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+    },
+    {
+      id:4,
+      name:"Charmander",
+      type:"fire",
+      image:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+    },
+    {
+      id:7,
+      name:"Squirtle",
+      type:"water",
+      image:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+    },
+    {
+      id:1,
+      name:"Bulbasaur",
+      type:"grass",
+      image:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+    }
+  ];
+
+  const container = document.getElementById("pokemonContainer");
+
+  function renderPokemons(list){
+
+    container.innerHTML = "";
+
+    list.forEach(pokemon => {
+
+      container.innerHTML += `
+      
+        <div class="card">
+
+          <div class="pokemon-id">
+            #${pokemon.id}
+          </div>
+
+          <img 
+            src="${pokemon.image}" 
+            class="pokemon-img"
+          >
+
+          <div class="pokemon-name">
+            ${pokemon.name}
+          </div>
+
+          <div class="pokemon-type">
+            <span class="badge ${pokemon.type}">
+              ${translateType(pokemon.type)}
+            </span>
+          </div>
+
+          <div class="actions">
+            <button 
+              class="btn edit"
+              onclick="editPokemon(${pokemon.id})"
+            >
+              Editar
+            </button>
+
+            <button 
+              class="btn delete"
+              onclick="deletePokemon(${pokemon.id})"
+            >
+              Eliminar
+            </button>
+          </div>
+
+        </div>
+
+      `;
+    });
+
+  }
+
+  function translateType(type){
+
+    const types = {
+      electric:"Eléctrico",
+      fire:"Fuego",
+      water:"Agua",
+      grass:"Planta"
+    };
+
+    return types[type];
+  }
+
+  function deletePokemon(id){
+
+    pokemons = pokemons.filter(p => p.id !== id);
+
+    renderPokemons(pokemons);
+  }
+
+  function editPokemon(id){
+
+    const pokemon = pokemons.find(p => p.id === id);
+
+    const newName = prompt("Nuevo nombre:", pokemon.name);
+
+    if(newName){
+      pokemon.name = newName;
+      renderPokemons(pokemons);
+    }
+
+  }
+
+  function openModal(){
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  function closeModal(){
+    document.getElementById("modal").style.display = "none";
+  }
+
+  function addPokemon(){
+
+    const name = document.getElementById("name").value;
+    const type = document.getElementById("type").value;
+    const image = document.getElementById("image").value;
+
+    const newPokemon = {
+      id: Math.floor(Math.random() * 1000),
+      name,
+      type,
+      image
+    };
+
+    pokemons.push(newPokemon);
+
+    renderPokemons(pokemons);
+
+    closeModal();
+
+  }
+
+  document
+    .getElementById("searchInput")
+    .addEventListener("input", e => {
+
+      const value = e.target.value.toLowerCase();
+
+      const filtered = pokemons.filter(p =>
+        p.name.toLowerCase().includes(value)
+      );
+
+      renderPokemons(filtered);
+
+    });
+
+  renderPokemons(pokemons);
+
+</script>
+
+</body>
+</html>
