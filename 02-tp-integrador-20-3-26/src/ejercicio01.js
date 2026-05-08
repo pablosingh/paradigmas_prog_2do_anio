@@ -12,6 +12,7 @@ const esPar = (numero) => numero % 2 === 0;
 
 export const ejercicio01 = () => {
   separador('01');
+  console.log("Generamos un numero aleatorio y realizamos las operaciones...")
   console.log('============================================');
   console.log('Suma Dos : ' + sumarDos(numeroAleatorio()));
   console.log('Suma Dos : ' + sumarDos(numeroAleatorio()));

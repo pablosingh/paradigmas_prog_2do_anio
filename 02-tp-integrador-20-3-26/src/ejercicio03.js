@@ -1,5 +1,9 @@
 import { separador } from './index.js';
 
+// En este Ejercicio trabajams las funciones ciudadanas y de orden superior
+// las ciudadanas las podemos trabajar como una variable más y pasarlas 
+// a otras funciones y estas que reciben esto son las de orden superior
+
 const miTrim = (texto) => {
   let nuevoTexto = '';
   let paraRetorno = '';
@@ -33,10 +37,6 @@ export const quitarEspaciosInternos = (texto) => {
   let repetido = false;
   if (typeof texto === 'string') {
     for (let i = 0; i < texto.length; i++) {
-      // if (i == 0) {
-      //   nuevoTexto = nuevoTexto + texto.charAt(0).toUpperCase();
-      //   continue;
-      // }
       if (texto[i] != ' ') {
         nuevoTexto = nuevoTexto + texto[i];
         repetido = false;
@@ -63,6 +63,7 @@ export const normalizarTexto = (texto) => {
 
 export const ejercicio03 = () => {
   separador('03');
+  console.log("Funciones ciudadanas y de orden superior con texto, Capitalizando y quitando espacios en blanco.-")
   console.log(normalizarTexto('    hola  sd   SDFSDE    a   1    '));
   console.log(normalizarTexto('    1 2 3 4    5 678   9    '));
   console.log(normalizarTexto('      a  '));
