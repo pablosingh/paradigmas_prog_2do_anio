@@ -5,8 +5,11 @@ const potencia = (base, exponente) => {
   else return base;
 };
 
+// Recursividad
+
 export const ejercicio15 = () => {
   separador('15');
+  console.log("Recursividad");
   console.log(potencia(2, 5));
   console.log(potencia(2, 10));
 };
