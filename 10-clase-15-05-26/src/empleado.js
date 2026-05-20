@@ -9,4 +9,7 @@ export class Empleado {
     calcularSueldo(){
         return this.#sueldoBase;
     }
+    darNombre(){
+        return this.#nombre;
+    }
 };

@@ -13,5 +13,5 @@ console.log(empleado3.calcularSueldo());
 const arregloEmpleados = [empleado1, empleado2, empleado3];
 
 for (let i=0; i < arregloEmpleados.length; i++){
-    console.log(arregloEmpleados[i].calcularSueldo());
+    console.log(`${arregloEmpleados[i].darNombre()} - sueldo: $${arregloEmpleados[i].calcularSueldo()}`);
 };
