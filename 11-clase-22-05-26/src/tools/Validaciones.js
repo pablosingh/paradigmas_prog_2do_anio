@@ -18,3 +18,5 @@ const fns = [
 ];
 
 const verificar = (password) => fns.every( f => f.fn(password) );
+
+module.exports = verificar;
