@@ -1,2 +1,2 @@
 
-const Docente = require('./src/docente.js');
+const Docente = require('./src/models/docente.js');
